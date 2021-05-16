@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const {width, height } = Dimensions.get('screen');
 
 export default StyleSheet.create({
     container: {
@@ -6,6 +8,6 @@ export default StyleSheet.create({
         display:'flex',
         flex: 1,
         alignItems: 'center', 
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
     },  
 });

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Text, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Dimensions } from 'react-native';
+import { Input, Icon } from "react-native-elements";
 import PropTypes from 'prop-types';
 
 import styles from './styles';
@@ -16,25 +17,47 @@ const colors = {
     'Form': '#F4F5F7'
 }
 
-export default function TextBasic({ text, type, textStyle, size, align}) {
+export default function InputBasic({ value, setValue, type, width, height, align, style, placeHolder, leftIcon }) {
+    const [textPassword, setTextPassword] = useState(false);
+
+
+    const type_password = (type) => {
+        if(type==='Password') {
+            return {
+                secureTextEntry: !textPassword,
+                leftIcon: {
+                    type:'material-community',
+                    name:'lock-outline',
+                    color: '#3E5481'
+                },
+                rightIcon: ()=>(
+                    <Icon onPress={() => setTextPassword(!textPassword)} name={textPassword ? 'eye-off-outline':'eye-outline'} type="material-community" color='#9FA5C0' />
+                ) 
+            }
+        }
+    }
 
     return (
-        <Text style={[{color:colors[type], fontSize:size, textAlign: align }, textStyle]}>
-            {text}
-        </Text>   
+       <Input leftIconContainerStyle={styles.leftIcon} rightIconContainerStyle={styles.rightIcon} leftIcon={leftIcon} inputStyle={[{...styles.inputStyle}]} inputContainerStyle={[{...styles.container},{width: width, height:height}]}   value={value}   onChange={(e)=>setValue(e.nativeEvent.text)} {...type_password(type)}  placeholder={placeHolder} />
     );
 };
 
-TextBasic.propTypes = {
-    text: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(['Primary', 'Secondary','MainText','SecondaryText', 'Outline','White','Form']),
-    size: PropTypes.number,
+InputBasic.propTypes = {
+    value: PropTypes.any.isRequired,
+    setValue: PropTypes.func.isRequired,
+    type: PropTypes.oneOf(['Password', 'Email','Text', 'Number']),
+    width: PropTypes.any,
+    height: PropTypes.any,
     align: PropTypes.oneOf(['right', 'left', 'center']),
+    placeHolder:PropTypes.string,
+    leftIcon:PropTypes.any
 }
 
-TextBasic.defaultProps = {
-    text: 'default title',
-    type: 'MainText',
-    size: width * 0.05,
-    align: 'center'
+InputBasic.defaultProps = {
+    defaultValue: 'default value',
+    type: 'Text',
+    align: 'left',
+    width: width*0.7,
+    height: height*0.06
+
 }

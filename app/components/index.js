@@ -1,7 +1,9 @@
-import ButtonBasic from './ButtonBasic/index';
-import TextBasic from './TextBasic/index';
+import CustomText from './TextBasic/index';
+import CustomInput from './InputBasic';
+import CustomButton from './ButtonBasic/index';
 
-export default () => ({
-    Button: ButtonBasic,
-    Text: TextBasic
-});
+export const  {
+ CustomButton,
+ CustomText,
+ CustomInput
+}

@@ -16,7 +16,7 @@ const colors = {
     'Form': '#F4F5F7'
 }
 
-export default function TextBasic({ text, type, textStyle, size, align}) {
+export default function TextBasic({ text, type, textStyle, size, align, press}) {
 
     return (
         <Text style={[{color:colors[type], fontSize:size, textAlign: align }, textStyle]}>
