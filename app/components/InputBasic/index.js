@@ -17,9 +17,10 @@ const colors = {
     'Form': '#F4F5F7'
 }
 
-export default function InputBasic({ value, setValue, type, width, height, align, style, placeHolder, leftIcon }) {
+export default function InputBasic({inputError = '',message='',value, setValue, type = 'Text', width, height, align, style, placeHolder, leftIcon }) {
     const [textPassword, setTextPassword] = useState(false);
-
+    const [error, setError] = useState(inputError);
+    const [errorMessage, setErrorMessage] = useState(message);
 
     const type_password = (type) => {
         if(type==='Password') {
@@ -36,21 +37,50 @@ export default function InputBasic({ value, setValue, type, width, height, align
             }
         }
     }
+    const changeText = (e) => {
+        setValue(e.nativeEvent.text);
+        switch (type) {
+            case 'Email':
+                validateEmail();
+                break;
+            case 'Username':
+                validateUsername();
+                break;
+            case 'Password':
+                validatePassword();
+                break;
+            default:
+                break;
+        }
+    }
+
+    const validateEmail = () => {
+        const reg = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        reg.test(value) ? setError(false):setError(true);
+    }
+
+    const validateUsername = () => {
+        String(value).length >= 6 ? setError(false):setError(true);
+    }
+    const validatePassword = () => {
+        String(value).length >= 8 ? setError(false):setError(true);
+    }
 
     return (
-       <Input leftIconContainerStyle={styles.leftIcon} rightIconContainerStyle={styles.rightIcon} leftIcon={leftIcon} inputStyle={[{...styles.inputStyle}]} inputContainerStyle={[{...styles.container},{width: width, height:height}]}   value={value}   onChange={(e)=>setValue(e.nativeEvent.text)} {...type_password(type)}  placeholder={placeHolder} />
+       <Input customValidation={()=>customValidation(setError, setErrorMessage)} leftIconContainerStyle={styles.leftIcon} rightIconContainerStyle={styles.rightIcon} leftIcon={leftIcon} inputStyle={[{...styles.inputStyle}]} inputContainerStyle={[{...styles.container},{width: width, height:height, borderColor:error ? 'red':'#2E3E5C'}]}   value={value}   onChange={changeText} {...type_password(type)}  placeholder={placeHolder} />
     );
 };
 
 InputBasic.propTypes = {
     value: PropTypes.any.isRequired,
     setValue: PropTypes.func.isRequired,
-    type: PropTypes.oneOf(['Password', 'Email','Text', 'Number']),
+    type: PropTypes.oneOf(['Password', 'Email','Text', 'Number','Username']),
     width: PropTypes.any,
     height: PropTypes.any,
     align: PropTypes.oneOf(['right', 'left', 'center']),
     placeHolder:PropTypes.string,
-    leftIcon:PropTypes.any
+    leftIcon:PropTypes.any,
+    inputError: PropTypes.bool,
 }
 
 InputBasic.defaultProps = {
@@ -58,6 +88,6 @@ InputBasic.defaultProps = {
     type: 'Text',
     align: 'left',
     width: width*0.7,
-    height: height*0.06
-
+    height: height*0.06,
+    inputError: false,
 }

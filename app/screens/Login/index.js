@@ -9,7 +9,8 @@ import Input from '../../components/InputBasic';
 
 import styles from './styles';
 
-export default function Login() {
+export default function Login(props) {
+    const { navigation } = props;
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     return (
@@ -21,7 +22,7 @@ export default function Login() {
             <View style={{display:'flex', width:'90%'}}>
                 <Input value={email} setValue={setEmail} width="100%"  placeHolder="email@example.com"  leftIcon={{type:'material-community','name':'email-outline', color:'#3E5481'}} />
                 <Input value={password} setValue={setPassword}  width="100%"  type="Password" placeHolder="password"  />
-                <TouchableOpacity onPress={()=>console.log('yendo a recuperar contraseña')}>
+                <TouchableOpacity onPress={()=>navigation.navigate('passwordRecovery')}>
                    <Text text="¿Forgot password?" align="right" size={15} textStyle={{marginTop:-16, marginRight:10}} />
                 </TouchableOpacity>            
             </View>
@@ -29,10 +30,10 @@ export default function Login() {
                 <Button text="Login" height={50}  containerStyle={{width:'80%'}} />
                 <Text text="Or continue with"  type="SecondaryText" textStyle={{marginTop:25}} />
                 <SocialIcon onPress={()=>console.log('logueado con facebook')} title='Sign In With Facebook' button type='facebook' style={{width:'80%', marginTop:25}}  />
-                <View style={{display:'flex', flexDirection:'row', width:'100%',justifyContent:'center', marginTop:18}} >
-                    <Text text="¿Don’t have any account?"  size={15} textStyle={{marginTop:-16, marginRight:10}} />
-                    <TouchableOpacity onPress={()=>console.log('yendo a registrarme')}>
-                           <Text text="Sign Up" type="Primary"  size={15} textStyle={{marginTop:-16, marginRight:10}} />
+                <View style={{display:'flex', flexDirection:'row', width:'100%',justifyContent:'center',alignItems:'center', marginTop:18}} >
+                    <Text text="¿Don’t have any account?"  size={15} textStyle={{marginRight:10}} />
+                    <TouchableOpacity onPress={()=>navigation.navigate('register')}>
+                           <Text text="Sign Up" type="Primary"  size={15} textStyle={{marginRight:10}} />
                     </TouchableOpacity>  
                 </View>             
             </View>

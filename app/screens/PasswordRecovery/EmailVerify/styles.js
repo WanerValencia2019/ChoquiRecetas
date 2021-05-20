@@ -6,10 +6,9 @@ export default StyleSheet.create({
     
     container: {
         marginTop:24,
-        display:'flex',
-        flex: 1,
+        display:'flex',        
         alignItems: 'center', 
-        justifyContent: 'space-evenly',
-            backgroundColor: 'white'
+        justifyContent: 'center',
+        backgroundColor: 'white'
     },  
 });
