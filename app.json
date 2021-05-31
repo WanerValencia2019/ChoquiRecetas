@@ -27,6 +27,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "facebookAppId": "807084246600631",
+    "facebookDisplayName":"choquiRecetas"
+
   }
 }

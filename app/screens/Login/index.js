@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { SocialIcon  } from 'react-native-elements';
-
+import * as Facebook from 'expo-facebook';
 import Button from '../../components/ButtonBasic';
 import Text from '../../components/TextBasic';
 import Input from '../../components/InputBasic';
@@ -13,6 +13,26 @@ export default function Login(props) {
     const { navigation } = props;
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
+
+    const loginWithFacebook = async() =>{
+         await Facebook.initializeAsync({
+          appId: '807084246600631',
+        });
+        const {
+            type,
+            token,
+            permissions,
+            declinedPermissions,
+        } = await Facebook.logInWithReadPermissionsAsync({
+            permissions: ['public_profile'],
+        });
+
+        if(type=="success"){
+            console.log(token)
+        }
+
+    }
+
     return (
         <View style={styles.container}>
             <View>
@@ -29,7 +49,7 @@ export default function Login(props) {
             <View style={{width:'100%', display:'flex', alignItems:'center',}}>
                 <Button text="Login" height={50}  containerStyle={{width:'80%'}} />
                 <Text text="Or continue with"  type="SecondaryText" textStyle={{marginTop:25}} />
-                <SocialIcon onPress={()=>console.log('logueado con facebook')} title='Sign In With Facebook' button type='facebook' style={{width:'80%', marginTop:25}}  />
+                <SocialIcon onPress={()=>loginWithFacebook()} title='Sign In With Facebook' button type='facebook' style={{width:'80%', marginTop:25}}  />
                 <View style={{display:'flex', flexDirection:'row', width:'100%',justifyContent:'center',alignItems:'center', marginTop:18}} >
                     <Text text="¿Don’t have any account?"  size={15} textStyle={{marginRight:10}} />
                     <TouchableOpacity onPress={()=>navigation.navigate('register')}>
