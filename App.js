@@ -4,9 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { PersistGate } from 'redux-persist/es/integration/react';
-import {store, persistor} from './app/redux/store'
+import {store, persistor} from './src/redux/store'
 
-import InitialNavigation from './app/navigation/initialNavigation';
+import InitialNavigation from './src/navigation/initialNavigation';
   
 export default function App() {
   return (

@@ -13,7 +13,7 @@ const colors = {
     'Outline': '#D0DBEA'
 }
 
-export default function ButtonBasic({ text, icon, type, height, titleStyle, press, containerStyle}) {
+export default function ButtonBasic({ text, icon, type, height, titleStyle, press, containerStyle, disabled}) {
 
     const setTextColor = () => (type === 'Light' ? colors.SecondaryText: '#FFFFFF')
 
@@ -21,6 +21,7 @@ export default function ButtonBasic({ text, icon, type, height, titleStyle, pres
         <Button 
         icon={icon || null} 
         title={text}
+        disabled={disabled}
         titleStyle={{color: setTextColor()}}
         buttonStyle={{backgroundColor: colors[type], height:height}} containerStyle={[styles.container,containerStyle,{elevation: type === 'Light' ? 0:3} ]} onPress = {()=>press()}  />
     );
@@ -33,6 +34,7 @@ ButtonBasic.propTypes = {
     type: PropTypes.oneOf(['Primary', 'Secondary','MainText','SecondaryText','Light']),
     height: PropTypes.number,
     textColor: PropTypes.string,
+    disabled: PropTypes.bool
 }
 
 ButtonBasic.defaultProps = {
@@ -40,4 +42,5 @@ ButtonBasic.defaultProps = {
     press: () => console.log('click me'),
     type: 'Primary',
     height: 50,
+    disabled: false
 }
