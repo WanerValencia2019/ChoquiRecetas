@@ -26,29 +26,31 @@ export const sendVerificationCode = (email) => (dispatch) => {
         });
 };
 
-export const verifyCode = (email="", code=0) => (dispatch) => {
-    dispatch(startLoading());
-    axios
-        .post(`${baseURL}/auth/reset_password/confirm`, { email, code })
-        .then((res) => {
-            dispatch(stopLoading());
-            return dispatch({ type: Actions.PASSWORD_RESET_SUCCESS });
-        })
-        .catch((error) => {
-            const { message } = error.response.data;
-            console.log(message)
-            dispatch(stopLoading());
-            return dispatch({
-                type: Actions.PASSWORD_RESET_ERROR,
-                payload: {
-                    messageError: message[0],
-                },
+export const verifyCode =
+    (email = '', code = 0) =>
+    (dispatch) => {
+        dispatch(startLoading());
+        axios
+            .post(`${baseURL}/auth/reset_password/confirm`, { email, code })
+            .then((res) => {
+                dispatch(stopLoading());
+                return dispatch({ type: Actions.PASSWORD_RESET_SUCCESS });
+            })
+            .catch((error) => {
+                const { message } = error.response.data;
+                console.log(message);
+                dispatch(stopLoading());
+                return dispatch({
+                    type: Actions.PASSWORD_RESET_ERROR,
+                    payload: {
+                        messageError: message[0],
+                    },
+                });
             });
-        });
-}
+    };
 
 export const clearPasswordRecovery = () => (dispatch) =>
     dispatch({ type: Actions.CLEAR_PASSWORD_RECOVERY });
 
-export const showModal = () => (dispatch) => dispatch({type: Actions.SHOW_MODAL})
-export const hideModal = () => (dispatch) => dispatch({type: Actions.HIDE_MODAL})
+export const showModal = () => (dispatch) => dispatch({ type: Actions.SHOW_MODAL });
+export const hideModal = () => (dispatch) => dispatch({ type: Actions.HIDE_MODAL });
