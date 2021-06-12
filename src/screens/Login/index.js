@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -12,7 +12,7 @@ import Input from '../../components/InputBasic';
 import AlertMessage from '../../components/AlertMessage';
 import Loading from '../../components/Loading';
 
-import { login } from './actionCreators.js';
+import { login, clearLogin } from './actionCreators.js';
 import { showAlert, hideAlert } from '../../components/AlertMessage/actionCreators.js';
 
 import styles from './styles';
@@ -27,6 +27,13 @@ export default function Login(props) {
     const loading = useSelector((state) => state.loading);
     const alertMessage = useSelector((state) => state.alert);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(hideAlert());
+            dispatch(clearLogin());
+        };
+    }, []);
 
     const loginWithFacebook = async () => {
         await Facebook.initializeAsync({
@@ -43,10 +50,10 @@ export default function Login(props) {
     };
 
     const loginWithEmail = () => {
-        if (email.trim().length < 5 && password.trim().length < 5) {
+        if (email.trim().length < 5 || password.trim().length < 5) {
             dispatch(showAlert('Debes llenar correctamente todos los campos'));
         } else {
-            dispatch(hideAlert())
+            dispatch(hideAlert());
             dispatch(login(email, password));
         }
     };
@@ -58,13 +65,14 @@ export default function Login(props) {
                     <Text text="Welcome Back" textStyle={{ fontWeight: 'bold' }} size={25} />
                     <Text text="Please enter your account here" type="SecondaryText" />
                 </View>
-                
-                
+
                 <View style={{ display: 'flex', width: '90%' }}>
-                <View style={{marginBottom: 10}}>
-                    {alertMessage.showAlert  || loginReducer.error ? <AlertMessage message={alertMessage.message || loginReducer.message} /> : null}
-                    {loading.isLoading ? <Loading /> : null}
-                </View>
+                    <View style={{ marginBottom: 10 }}>
+                        {alertMessage.showAlert || loginReducer.error ? (
+                            <AlertMessage message={alertMessage.message || loginReducer.message} />
+                        ) : null}
+                        {loading.isLoading ? <Loading /> : null}
+                    </View>
                     <Input
                         type="Email"
                         value={email}
@@ -76,6 +84,7 @@ export default function Login(props) {
                             name: 'email-outline',
                             color: '#3E5481',
                         }}
+                        keyboardType="email-address"
                     />
                     <Input
                         value={password}

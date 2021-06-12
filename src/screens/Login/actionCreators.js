@@ -40,3 +40,5 @@ export const login =
                 });
             });
     };
+
+export const clearLogin = () => (dispatch) => dispatch({ type: Actions.CLEAR_LOGIN });
