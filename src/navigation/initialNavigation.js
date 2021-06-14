@@ -9,7 +9,9 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import PasswordRecovery from '../screens/PasswordRecovery';
 import EmailVerify from '../screens/PasswordRecovery/EmailVerify';
-import AccounActivate from '../screens/Register/EmailVerify';
+import ActivateRegister from '../screens/Register/EmailVerify';
+import ActivateAccount from '../screens/ActivateAccount';
+import ActivateAccountVerify from '../screens/ActivateAccount/EmailVerify';
 import Profile from '../screens/Profile';
 
 const stack = createStackNavigator();
@@ -31,7 +33,9 @@ const AuthStack = () => (
         <stack.Screen name="register" component={Register} />
         <stack.Screen name="passwordRecovery" component={PasswordRecovery} />
         <stack.Screen name="emailVerify" component={EmailVerify} />
-        <stack.Screen name="accountActivate" component={AccounActivate} />
+        <stack.Screen name="activateRegister" component={ActivateRegister} />
+        <stack.Screen name="activateAccount" component={ActivateAccount} />
+        <stack.Screen name="activateAccountVerify" component={ActivateAccountVerify} />
     </stack.Navigator>
 );
 

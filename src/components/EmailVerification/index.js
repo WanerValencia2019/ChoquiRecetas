@@ -45,7 +45,7 @@ export default function EmailVerification({
 
     const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({ value, setValue });
-
+    console.log(state)
     const updateTimer = async () => {
         if (seconds === 59 && minutes === -1) {
             setSeconds(0);

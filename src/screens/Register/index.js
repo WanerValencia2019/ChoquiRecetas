@@ -33,7 +33,7 @@ export default function Register(props) {
 
 
     useEffect(() => {
-        if (registerReducer.sendedCode) navigation.navigate('accountActivate', { email });
+        if (registerReducer.sendedCode) navigation.navigate('activateRegister', { email });
         return () => {
             dispatch(clearRegister());
             dispatch(hideAlert())

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { SocialIcon } from 'react-native-elements';
+import { SocialIcon, Divider } from 'react-native-elements';
 import * as Facebook from 'expo-facebook';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,6 +16,8 @@ import { login, clearLogin } from './actionCreators.js';
 import { showAlert, hideAlert } from '../../components/AlertMessage/actionCreators.js';
 
 import styles from './styles';
+
+const { width } = Dimensions.get('screen')
 
 export default function Login(props) {
     const { navigation } = props;
@@ -145,6 +147,15 @@ export default function Login(props) {
                             />
                         </TouchableOpacity>
                     </View>
+                    <Divider width = {width * 0.65} />
+                        <TouchableOpacity onPress={() => navigation.navigate('activateAccount')}>
+                            <Text
+                                text="Activar mi cuenta"
+                                type="Primary"
+                                size={15}
+                                textStyle={{ marginTop: 20, marginBottom: 20 }}
+                            />
+                        </TouchableOpacity>
                 </View>
                 {/* <View style={{borderWidth:3,bottom: 0,borderColor:'#000', width:200, borderRadius:30 }} /> */}
             </View>

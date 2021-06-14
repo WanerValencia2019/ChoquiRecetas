@@ -5,6 +5,7 @@ import AlertMessage from '../components/AlertMessage/reducer.js';
 import Loading from '../components/Loading/reducer.js';
 import passwordRecovery from '../screens/PasswordRecovery/reducer.js';
 import registerReducer from '../screens/Register/reducer.js';
+import activateAccount from '../screens/ActivateAccount/reducers.js';
 
 export default combineReducers({
     login: loginReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
     loading: Loading,
     alert: AlertMessage,
     passwordRecovery,
+    activateAccount
 });

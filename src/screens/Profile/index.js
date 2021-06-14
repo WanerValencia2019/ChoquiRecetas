@@ -22,8 +22,8 @@ export default function Profile(props) {
         <View style={styles.container}>
             <Image source={eats} style={{resizeMode:'contain'}} />
             <View>
-                <Text text="Start Cooking" textStyle={{fontWeight:'bold'}} size={25} />
-                <Text text="BIENVENIDO"  type="SecondaryText"  />
+                <Text text="BIENVENIDO" textStyle={{fontWeight:'bold'}} size={25} />
+                <Text text={`${profile.first_name} ${profile.last_name}`}  type="SecondaryText"  />
             </View>
             <Button  press={()=>dispatch(logout(profile.token, profile.user_id))}  text="Cerrar sesión" height={50}  containerStyle={{width:'80%'}} />
             <View style={{borderWidth:3, borderColor:'#000', width:200, borderRadius:30 }} />
