@@ -46,8 +46,7 @@ const InitialStack = () => (
             component={Profile}
             options={{
                 tabBarLabel: 'Inicio',
-                tabBarIcon: ({ focused }) => {
-                    console.log(focused);
+                tabBarIcon: ({ focused }) => {                   
                     return (
                         <Icon
                             name="home"
@@ -64,7 +63,6 @@ const InitialStack = () => (
             options={{
                 tabBarLabel: 'Subir',
                 tabBarIcon: ({ focused }) => {
-                    console.log(focused);
                     return (
                         <Icon
                             name="upload"
@@ -81,7 +79,6 @@ const InitialStack = () => (
             options={{
                 tabBarLabel: 'Notificación',
                 tabBarIcon: ({ focused }) => {
-                    console.log(focused);
                     return (
                         <Icon
                             name="bell"
@@ -98,7 +95,6 @@ const InitialStack = () => (
             options={{
                 tabBarLabel: 'Perfil',
                 tabBarIcon: ({ focused }) => {
-                    console.log(focused);
                     return (
                         <Icon
                             name="account"

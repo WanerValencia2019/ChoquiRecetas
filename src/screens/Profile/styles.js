@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width, height } = Dimensions.get("screen");
 
 export default StyleSheet.create({
     container: {
@@ -7,6 +9,23 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center', 
         justifyContent: 'space-between',
-        backgroundColor: 'white'
+        backgroundColor: '#F4F5F7'
     },  
+    view_one: {
+    	height: height * .42,
+    	width: width,
+    	backgroundColor: 'white',
+    	display:'flex',
+        justifyContent: 'space-evenly',
+    },
+    view_two:{
+    	height: height * .436,
+    	width: width,
+    	marginTop: height * .005,
+    	backgroundColor: 'white',
+    	display:'flex',
+        alignItems: 'center', 
+        justifyContent: 'space-evenly',
+    }
+
 });

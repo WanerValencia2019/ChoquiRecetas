@@ -18,7 +18,6 @@ export const login =
             .post(`${baseURL}/api/v1/auth/login`, data)
             .then((res) => {
                 const { token, user } = res.data;
-
                 dispatch({ type: Actions.LOGIN_SUCCESS });
                 dispatch(stopLoading());
                 return dispatch({

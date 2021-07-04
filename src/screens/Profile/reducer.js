@@ -7,10 +7,12 @@ const initialState = {
     last_name: '',
     email: '',
     username: '',
+    followers: [],
     isLoading: false,
     error: null,
     logged: false,
     message: true,
+    image_profile: null,
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +28,8 @@ export default (state = initialState, action) => {
                 username: action.payload.username,
                 first_name: action.payload.first_name,
                 last_name: action.payload.last_name,
+                followers: action.payload.followers,
+                image_profile: action.payload.image_profile,
             };
         case Actions.LOGOUT_SUCCESS:
             return { ...state, ...initialState };

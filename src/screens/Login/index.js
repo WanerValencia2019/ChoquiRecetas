@@ -17,7 +17,7 @@ import { showAlert, hideAlert } from '../../components/AlertMessage/actionCreato
 
 import styles from './styles';
 
-const { width } = Dimensions.get('screen')
+const { width } = Dimensions.get('screen');
 
 export default function Login(props) {
     const { navigation } = props;
