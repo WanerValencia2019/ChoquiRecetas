@@ -16,10 +16,10 @@ const colors = {
     'Form': '#F4F5F7'
 }
 
-export default function TextBasic({ text, type, textStyle, size, align, press}) {
+export default function TextBasic({ text, type, textStyle, size, align, press, numberOfLines}) {
 
     return (
-        <Text style={[{color:colors[type], fontSize:size, textAlign: align }, textStyle]}>
+        <Text numberOfLines={numberOfLines} style={[{color:colors[type], fontSize:size, textAlign: align }, textStyle]}>
             {text}
         </Text>   
     );
@@ -30,11 +30,13 @@ TextBasic.propTypes = {
     type: PropTypes.oneOf(['Primary', 'Secondary','MainText','SecondaryText', 'Outline','White','Form']),
     size: PropTypes.number,
     align: PropTypes.oneOf(['right', 'left', 'center']),
+    numberOfLines: PropTypes.number,
 }
 
 TextBasic.defaultProps = {
     text: 'default title',
     type: 'MainText',
     size: width * 0.05,
-    align: 'center'
+    align: 'center',
+    numberOfLines: null
 }

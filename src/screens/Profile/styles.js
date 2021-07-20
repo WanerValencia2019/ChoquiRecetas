@@ -4,28 +4,27 @@ const { width, height } = Dimensions.get("screen");
 
 export default StyleSheet.create({
     container: {
-        marginTop:24,
+        marginTop:26,
         display:'flex',
         flex: 1,
         alignItems: 'center', 
         justifyContent: 'space-between',
-        backgroundColor: '#F4F5F7'
+        backgroundColor: '#F4F5F7',
+        bottom: 10
     },  
     view_one: {
-    	height: height * .42,
+    	height: height * .38,
     	width: width,
     	backgroundColor: 'white',
     	display:'flex',
         justifyContent: 'space-evenly',
+        paddingBottom: 5,
     },
     view_two:{
-    	height: height * .436,
+    	height: height * .486,
     	width: width,
     	marginTop: height * .005,
     	backgroundColor: 'white',
-    	display:'flex',
-        alignItems: 'center', 
-        justifyContent: 'space-evenly',
     }
 
 });
